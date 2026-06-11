@@ -1,0 +1,84 @@
+name: Release
+
+# Lockstep release: @kaged/sso and @kaged/sso-fixtures publish at the SAME
+# version from one tag (ADR-0036 amendment). The container ships alongside.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish-npm:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # npm provenance
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - run: bun install --frozen-lockfile
+
+      - name: Generate golden fixtures
+        run: bun run packages/sso-fixtures/scripts/generate.ts
+
+      - name: Test
+        run: bun test --recursive packages/
+
+      - name: Verify tags match package versions (lockstep)
+        run: |
+          SSO=$(node -p "require('./packages/sso/package.json').version")
+          FIX=$(node -p "require('./packages/sso-fixtures/package.json').version")
+          if [ "v$SSO" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match @kaged/sso version $SSO"
+            exit 1
+          fi
+          if [ "v$FIX" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match @kaged/sso-fixtures version $FIX"
+            exit 1
+          fi
+
+      - name: Publish @kaged/sso-fixtures
+        working-directory: packages/sso-fixtures
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
+
+      - name: Publish @kaged/sso
+        working-directory: packages/sso
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
+
+  publish-image:
+    name: Publish container to GHCR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/kaged-dev/kaged-sso:${{ github.ref_name }}
+            ghcr.io/kaged-dev/kaged-sso:latest

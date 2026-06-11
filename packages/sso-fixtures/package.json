@@ -1,0 +1,27 @@
+{
+	"name": "@kaged/sso-fixtures",
+	"version": "0.0.1",
+	"description": "Golden token fixtures and test keypair for the kaged SSO §3.4 token contract. Versioned in lockstep with @kaged/sso.",
+	"license": "AGPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kaged-dev/kaged-sso.git"
+	},
+	"type": "module",
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"files": [
+		"src",
+		"fixtures"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"jose": "^5.9.6"
+	}
+}

@@ -1,0 +1,85 @@
+{
+  "version": "0.0.1",
+  "issuer": "https://sso.test.kaged.dev",
+  "audience": "kaged",
+  "kid": "kaged-sso-test-key-1",
+  "publicKeyJwk": {
+    "kty": "EC",
+    "crv": "P-256",
+    "x": "6QjQWTrXzN8htme0bsS5TiGUFy8vWsmVvuq4Zjrh-6k",
+    "y": "AXYrDKsrD3Hc_jZ_tADLTQeqalGSx7JTmuerBmjxNz8",
+    "kid": "kaged-sso-test-key-1",
+    "alg": "ES256",
+    "use": "sig"
+  },
+  "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6QjQWTrXzN8htme0bsS5TiGUFy8v\nWsmVvuq4Zjrh+6kBdisMqysPcdz+Nn+0AMtNB6pqUZLHslOa56sGaPE3Pw==\n-----END PUBLIC KEY-----",
+  "validTokens": [
+    {
+      "provider": "google",
+      "claims": {
+        "iss": "https://sso.test.kaged.dev",
+        "aud": "kaged",
+        "sub": "google_113942000000000000001",
+        "iat": 1700000000,
+        "exp": 1700000600,
+        "name": "Test google",
+        "email": "test-google@example.com",
+        "email_verified": true,
+        "picture": "https://cdn.example.com/google/avatar.png"
+      },
+      "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6ImthZ2VkIiwic3ViIjoiZ29vZ2xlXzExMzk0MjAwMDAwMDAwMDAwMDAwMSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxNzAwMDAwNjAwLCJuYW1lIjoiVGVzdCBnb29nbGUiLCJlbWFpbCI6InRlc3QtZ29vZ2xlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpY3R1cmUiOiJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9nb29nbGUvYXZhdGFyLnBuZyJ9.i87c49_fKz0T12MXlVxoJ_FYhDi786jlwHD1CkxUgsE8jSxw5dM5RrmaOxANldmrDE5F8T6MqjczWYYkXkIeJg"
+    },
+    {
+      "provider": "github",
+      "claims": {
+        "iss": "https://sso.test.kaged.dev",
+        "aud": "kaged",
+        "sub": "github_113942000000000000001",
+        "iat": 1700000000,
+        "exp": 1700000600,
+        "name": "Test github",
+        "email": "test-github@example.com",
+        "email_verified": true,
+        "picture": "https://cdn.example.com/github/avatar.png"
+      },
+      "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6ImthZ2VkIiwic3ViIjoiZ2l0aHViXzExMzk0MjAwMDAwMDAwMDAwMDAwMSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxNzAwMDAwNjAwLCJuYW1lIjoiVGVzdCBnaXRodWIiLCJlbWFpbCI6InRlc3QtZ2l0aHViQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpY3R1cmUiOiJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9naXRodWIvYXZhdGFyLnBuZyJ9.pzgeoWLM-gFQp6jh9sfXPL5woSEtAANj-DE_dL_ME-XAC7yp89eWb_fxScfFKQB8MbBy5oXetLI6fyp4XLhY0w"
+    }
+  ],
+  "invalidTokens": [
+    {
+      "step": "forged_signature",
+      "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6ImthZ2VkIiwic3ViIjoiZ29vZ2xlXzExMzk0MjAwMDAwMDAwMDAwMDAwMSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxNzAwMDAwNjAwLCJuYW1lIjoiVGVzdCBnb29nbGUiLCJlbWFpbCI6InRlc3QtZ29vZ2xlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpY3R1cmUiOiJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9nb29nbGUvYXZhdGFyLnBuZyJ9.bQjaVd0hfYf2HHeXDgE3qBEErKinrSqC4vzNXMyw1XZ08_tG8YVqGRjxujOlIUJI92sQ0QBm0ksz3ogdrol38w",
+      "reason": "signed by a key the daemon does not trust"
+    },
+    {
+      "step": "expired",
+      "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6ImthZ2VkIiwic3ViIjoiZ29vZ2xlXzExMzk0MjAwMDAwMDAwMDAwMDAwMSIsImlhdCI6MTY5OTk5NjAwMCwiZXhwIjoxNjk5OTk2NjAwLCJuYW1lIjoiVGVzdCBnb29nbGUiLCJlbWFpbCI6InRlc3QtZ29vZ2xlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpY3R1cmUiOiJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9nb29nbGUvYXZhdGFyLnBuZyJ9.zUeT-j9UvAXUlImATce48zkdX9ufuEjMQTTBAJzY5qKUxFkcvNyswTQYc5HU6VgqXLJMzQmICSFmK81Pw5Jw9A",
+      "reason": "exp is in the distant past"
+    },
+    {
+      "step": "wrong_iss",
+      "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL2V2aWwuZXhhbXBsZS5jb20iLCJhdWQiOiJrYWdlZCIsInN1YiI6Imdvb2dsZV8xMTM5NDIwMDAwMDAwMDAwMDAwMDEiLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MTcwMDAwMDYwMCwibmFtZSI6IlRlc3QgZ29vZ2xlIiwiZW1haWwiOiJ0ZXN0LWdvb2dsZUBleGFtcGxlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaWN0dXJlIjoiaHR0cHM6Ly9jZG4uZXhhbXBsZS5jb20vZ29vZ2xlL2F2YXRhci5wbmcifQ.mksH4CVcYZlC_LubG3lVeMCVOSu_KzxPDFF6XXF2mYfls9EjULo2AGxhcnDBtSm19CeNs3BY5SooQRNkP5gkzA",
+      "reason": "iss does not match the configured issuer"
+    },
+    {
+      "step": "wrong_aud",
+      "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6Im5vdC1rYWdlZCIsInN1YiI6Imdvb2dsZV8xMTM5NDIwMDAwMDAwMDAwMDAwMDEiLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MTcwMDAwMDYwMCwibmFtZSI6IlRlc3QgZ29vZ2xlIiwiZW1haWwiOiJ0ZXN0LWdvb2dsZUBleGFtcGxlLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaWN0dXJlIjoiaHR0cHM6Ly9jZG4uZXhhbXBsZS5jb20vZ29vZ2xlL2F2YXRhci5wbmcifQ.JmabCtuYamVEYz-r6jvQ_IWt3epmVGhq1YrJx_UOCCudTSTDrV-jhsxxD24m8Yg89CBr_ESGBrCEj7lgqL20oA",
+      "reason": "aud is not the fixed string kaged"
+    },
+    {
+      "step": "email_not_verified",
+      "token": "eyJhbGciOiJFUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6ImthZ2VkIiwic3ViIjoiZ29vZ2xlXzExMzk0MjAwMDAwMDAwMDAwMDAwMSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxNzAwMDAwNjAwLCJuYW1lIjoiVGVzdCBnb29nbGUiLCJlbWFpbCI6InRlc3QtZ29vZ2xlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwaWN0dXJlIjoiaHR0cHM6Ly9jZG4uZXhhbXBsZS5jb20vZ29vZ2xlL2F2YXRhci5wbmcifQ.hytfUdU8TBma6Rg1Xo9v3UA0oVAkLiVgyy6m_eOFe99KUNGlhE3dA8rlxe9FfyCQrnWJSV4wsyAoYtGvks5LqQ",
+      "reason": "email_verified is not literal true"
+    },
+    {
+      "step": "missing_kid",
+      "token": "eyJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6ImthZ2VkIiwic3ViIjoiZ29vZ2xlXzExMzk0MjAwMDAwMDAwMDAwMDAwMSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxNzAwMDAwNjAwLCJuYW1lIjoiVGVzdCBnb29nbGUiLCJlbWFpbCI6InRlc3QtZ29vZ2xlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpY3R1cmUiOiJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9nb29nbGUvYXZhdGFyLnBuZyJ9.pYwt9I5g5tNqY2UGEpf9kh9-2ASlxowZXZE_zm8JKSlO1jwlF_v9Qhd73w0cf1vylQTOWleD_k37MQjr7ZTmcQ",
+      "reason": "protected header has no kid"
+    },
+    {
+      "step": "wrong_alg",
+      "token": "eyJhbGciOiJIUzI1NiIsImtpZCI6ImthZ2VkLXNzby10ZXN0LWtleS0xIn0.eyJpc3MiOiJodHRwczovL3Nzby50ZXN0LmthZ2VkLmRldiIsImF1ZCI6ImthZ2VkIiwic3ViIjoiZ29vZ2xlXzExMzk0MjAwMDAwMDAwMDAwMDAwMSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxNzAwMDAwNjAwLCJuYW1lIjoiVGVzdCBnb29nbGUiLCJlbWFpbCI6InRlc3QtZ29vZ2xlQGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpY3R1cmUiOiJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9nb29nbGUvYXZhdGFyLnBuZyJ9.yb8Nyk8jOiB0IJuJqME4t_nGA0k_QhTvLZmh9vMky8Y",
+      "reason": "alg is not ES256 (HS256 here)"
+    }
+  ]
+}
