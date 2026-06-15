@@ -93,10 +93,6 @@ bun --filter '*' typecheck
 
 Local cross-repo loop with the daemon: `cd packages/sso-fixtures && bun link`, then in the daemon repo `bun link @kaged/sso-fixtures`.
 
-## Spec
-
-The authoritative contract lives in the kaged monorepo: `docs/specs/sso-relay.md` and `docs/adr/0036-unified-user-identity-shared-sso.md`.
-
 ---
 
 ## license
